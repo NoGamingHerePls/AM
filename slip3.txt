@@ -1,0 +1,62 @@
+Q1. BFS Traversal for a Graph (10 Marks)
+
+
+from collections import deque
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B'],
+    'F': ['C']
+}
+
+def bfs(start):
+    visited = set([start])
+    q = deque([start])
+
+    while q:
+        node = q.popleft()
+        print(node, end=" ")
+
+        for n in graph[node]:
+            if n not in visited:
+                visited.add(n)
+                q.append(n)
+
+bfs('A')
+
+
+
+OR: Propositional Logic using AND, OR and NOT (20 Marks)
+
+# Propositional Logic
+
+def AND(p, q):
+    return p and q
+
+def OR(p, q):
+    return p or q
+
+def NOT(p):
+    return not p
+
+p = bool(int(input("Enter P (1=True, 0=False): ")))
+q = bool(int(input("Enter Q (1=True, 0=False): ")))
+
+print("\nLogical Expressions:")
+print("P =", p)
+print("Q =", q)
+print("P AND Q =", AND(p, q))
+print("P OR Q =", OR(p, q))
+print("NOT P =", NOT(p))
+print("NOT Q =", NOT(q))
+
+print("\nTruth Table")
+print("P\tQ\tAND\tOR")
+
+for p in [True, False]:
+    for q in [True, False]:
+        print(p, "\t", q, "\t",
+              AND(p, q), "\t", OR(p, q))

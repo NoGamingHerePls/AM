@@ -1,0 +1,72 @@
+Q1. Best First Search (10 Marks)
+
+
+import heapq
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [], 'E': [], 'F': []
+}
+
+h = {'A': 5, 'B': 3, 'C': 4,
+     'D': 1, 'E': 2, 'F': 0}
+
+def best_first(start, goal):
+    q = [(h[start], start)]
+    visited = set()
+
+    while q:
+        _, node = heapq.heappop(q)
+
+        if node in visited:
+            continue
+
+        print(node, end=" ")
+        visited.add(node)
+
+        if node == goal:
+            return
+
+        for n in graph[node]:
+            if n not in visited:
+                heapq.heappush(q, (h[n], n))
+
+best_first('A', 'F')
+
+
+
+
+Q2. Propositional Logic using AND, OR and IMPLIES (20 Marks)
+
+
+
+# Propositional Logic using AND, OR and IMPLIES
+
+def AND(p, q):
+    return p and q
+
+def OR(p, q):
+    return p or q
+
+def IMPLIES(p, q):
+    return (not p) or q
+
+p = bool(int(input("Enter P (1=True, 0=False): ")))
+q = bool(int(input("Enter Q (1=True, 0=False): ")))
+
+print("\nLogical Expressions:")
+print("P AND Q =", AND(p, q))
+print("P OR Q =", OR(p, q))
+print("P IMPLIES Q =", IMPLIES(p, q))
+
+print("\nTruth Table")
+print("P\tQ\tAND\tOR\tIMPLIES")
+
+for p in [True, False]:
+    for q in [True, False]:
+        print(p, "\t", q, "\t",
+              AND(p, q), "\t",
+              OR(p, q), "\t",
+              IMPLIES(p, q))
